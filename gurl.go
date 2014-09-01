@@ -32,9 +32,7 @@ func connect(start, done chan bool, url string) {
 			done <- true
 			return
 		}
-
-		defer r.Body.Close()
-
+		
 		// Print the body
 		if VERBOSE > 0 {
 
@@ -48,6 +46,7 @@ func connect(start, done chan bool, url string) {
 
 			fmt.Printf(string(body))
 		}
+		r.Body.Close()
 
 		done <- true
 	}
